@@ -4,7 +4,7 @@ import { BlogHeaderComponent } from './components/blog-header/blog-header.compon
 import { BlogSidebarComponent } from './components/blog-sidebar/blog-sidebar.component';
 import { BlogFooterComponent } from './components/blog-footer/blog-footer.component';
 import { BlogLayoutComponent } from '../layout/blog-layout/blog-layout.component';
-import { BlogHomeComponent } from './components/blog-home/blog-home.component';
+import { BlogHomeComponent } from './pages/blog-home/blog-home.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { PostService } from '../services/post.service';
 
