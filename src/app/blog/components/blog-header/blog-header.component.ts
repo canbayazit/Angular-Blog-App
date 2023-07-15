@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-blog-header',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog-header.component.scss']
 })
 export class BlogHeaderComponent {
+  @Output() toggleDrawer: EventEmitter<void> = new EventEmitter<void>();
 
+  onToggleDrawer(): void {
+    this.toggleDrawer.emit();
+  }
 }
