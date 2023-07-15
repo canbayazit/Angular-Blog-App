@@ -1,3 +1,13 @@
-<app-blog-header></app-blog-header>
-<router-outlet></router-outlet>
-<app-blog-footer></app-blog-footer>
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+  <mat-drawer [opened]="isDrawerOpen" #drawer mode="side"
+    ><div class="image-overlay">
+      <app-blog-sidebar></app-blog-sidebar>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="light-white">
+    <app-blog-header (toggleDrawer)="toggleDrawer()"></app-blog-header>
+    <router-outlet></router-outlet>
+    <!-- main layout childrenları buraya gelcek -->
+    <app-blog-footer></app-blog-footer>
+  </mat-drawer-content>
+</mat-drawer-container>

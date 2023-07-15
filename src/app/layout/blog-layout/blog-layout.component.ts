@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-blog-layout',
@@ -7,5 +6,9 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./blog-layout.component.scss']
 })
 export class BlogLayoutComponent {
+  isDrawerOpen = true;
 
+  toggleDrawer(): void {
+    this.isDrawerOpen = !this.isDrawerOpen;
+  }
 }
