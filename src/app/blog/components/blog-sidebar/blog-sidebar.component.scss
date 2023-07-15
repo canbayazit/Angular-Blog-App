@@ -1,0 +1,130 @@
+.container {
+  font-weight: 600;
+  font-size: 18px;
+  &_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      font-weight: 900;
+      color: #fff;
+    }
+    img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+    }
+  }
+  &_nav {
+    ul {
+      li {
+        a {
+          color: #fff;
+          &:hover {
+            background-color: #ffffff50;
+          }
+          &.current-active {
+            color: #000;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                0 7px 10px -5px rgba(60, 72, 88, 0.4);
+                border-radius: 5px;
+          }
+        }
+
+      }
+    }
+  }
+  mat-accordion {
+    mat-expansion-panel {
+      background-color: transparent;
+      color: #fff;
+      box-shadow: none;
+      mat-expansion-panel-header {
+        &:hover {
+          background-color: #ffffff50;
+        }
+        mat-panel-title {
+          color: #fff;
+          font-weight: 600;
+          font-size: 18px;
+        }
+      }
+      ul {
+        li {
+          font-size: 16px;
+          list-style: none;
+
+          a {
+            display: flex;
+            padding: 10px 10px 10px 25px;
+            text-decoration: none;
+            color: #fff;
+            position: relative;
+            transition: all 0.35s ease-in-out;
+            width: 100%;
+
+            &.current-active {
+              font-weight: bold;
+              color: #202020;
+              font-size: 18px;
+              padding-left: 50px;
+              transition: all 0.35s ease-in-out;
+              background-color: #fff;
+              box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                0 7px 10px -5px rgba(60, 72, 88, 0.4);
+                border-radius: 5px;
+            }
+            &.current-active::after {
+              width: 25px;
+              transform-origin: left center;
+            }
+            &.current-active::before {
+              background-color: #202020;
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 8px;
+              height: 8px;
+              background-color: #fff;
+              border-radius: 50%;
+              top: 50%;
+              left: 10px;
+              transform: translate(-50%, -50%);
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 0;
+              height: 4px;
+              // background-color: #003781;
+              background-color: #202020;
+              // absoulute elementi vertical hizalama yöntemlerinden biri::after
+              // top %50 + ( - child height / 2 )
+              top: 50%;
+              /* child elementin yüksekliğinin  yarısını al bu durumda 5px'in yarısı */
+              margin-top: -2px;
+              left: 20px;
+              transition: width 0.3s ease-in-out;
+            }
+          }
+
+          &:hover {
+            background-color: #ffffff50;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

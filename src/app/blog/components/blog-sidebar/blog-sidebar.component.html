@@ -1,1 +1,49 @@
-<p>blog-sidebar works!</p>
+<div class="container">
+  <div class="container_logo pt-4 pb-3">
+    <img class="mb-3" src="../../../../assets/allianz.png" alt="" />
+    <h1>ALLIANZ</h1>
+  </div>
+  <div class="container_nav ms-2">
+    <ul
+      class="nav nav-pills flex-column mb-auto"
+      *ngFor="let navItem of headerList; let i = index"
+    >
+      <li class="nav-item mb-2">
+        <a
+          [routerLinkActiveOptions]="{ exact: true }"
+          [ngClass]="{ 'current-active': i === 0 && isHomePage() }"
+          class="nav-link py-3"
+          [routerLinkActive]="i === 0 ? '' : 'current-active'"
+          [routerLink]="navItem.path"
+          >{{ navItem.name }}</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = false"
+        (closed)="panelOpenState = true"
+      >
+        <mat-expansion-panel-header class="specific-class">
+          <mat-panel-title>Kategoriler</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul
+          class="navbar-nav"
+          *ngFor="let navItem of categoryList; let i = index"
+        >
+          <li class="nav-item">
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="current-active"
+              [routerLink]="'/posts/' + navItem.name"
+              >{{ navItem.name }}</a
+            >
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
