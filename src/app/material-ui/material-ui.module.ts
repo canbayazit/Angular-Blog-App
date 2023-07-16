@@ -7,6 +7,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatChipsModule} from '@angular/material/chips';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +21,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
+    MatMenuModule,
+    MatChipsModule
+
   ],
   exports: [
     CommonModule,
@@ -27,7 +35,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
+    MatMenuModule,
+    MatChipsModule
   ],
 })
 export class MaterialUiModule {}
