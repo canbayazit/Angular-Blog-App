@@ -1,0 +1,47 @@
+.container{
+  mat-card{
+    background-color: transparent;
+    box-shadow: none;
+    mat-card-title{
+      font-size: 16px;
+      font-weight: 600;
+    }
+    mat-card-header{
+      .container_user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          -ms-flex: 1;
+          flex: 1;
+          margin-left: 8px;
+          color: #0d0c22;
+        }
+      }
+      .container_date{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      mat-card-title{
+
+      }
+    }
+    .content{
+      word-wrap: break-word;
+    }
+  }
+}
+
