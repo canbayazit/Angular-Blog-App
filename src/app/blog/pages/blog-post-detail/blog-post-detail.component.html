@@ -1,1 +1,72 @@
-<p>blog-post-detail works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ post?.title | uppercase }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-header>
+      <div class="container_user">
+        <img src="../../../../assets/simpson_user.png" alt="" />
+        <span class="me-2 text-primary">{{ user?.username }}</span>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <mat-icon
+          class="d-flex justify-content-center align-items-center dot small text-secondary"
+          >fiber_manual_record</mat-icon
+        >
+      </div>
+      <div class="container_date">
+        <mat-card-subtitle>{{
+          post?.creation_date | date : "dd/MM/yyyy"
+        }}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <div class="ms-3 rounded my-3">
+      <img
+        class="rounded"
+        src="../../../../assets/allianz_tower_2.jpeg"
+        alt=""
+      />
+    </div>
+    <mat-card-content class="content">
+      <p>
+        {{ post?.content }}
+      </p>
+    </mat-card-content>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>COMMENTS</mat-card-title>
+      </mat-card-header>
+      <mat-divider class="pb-3"></mat-divider>
+      <mat-card-content class="">
+        <mat-list>
+          <mat-list-item class="h-auto" *ngFor="let comment of commentList">
+            <div class="d-flex mb-5">
+              <div class="d-flex mb-2 justify-content-center align-items-center">
+                <img
+                  class="w-50 "
+                  matListAvatar
+                  src="../../../../assets/simpson_user.png"
+                  alt="User Avatar"
+                />
+              </div>
+              <div class="w-100">
+                <div class="d-flex align-items-center">
+                  <h4
+                    matLine
+                    class="fw-bold d-flex mb-1 align-items-end border-5 me-2"
+                  >
+                    {{ comment.username }}
+                  </h4>
+                  <h4 class="d-flex mb-1 align-items-center text-secondary">
+                    {{ comment.creation_date | dateDiff }}
+                  </h4>
+                </div>
+                <p class="">{{ comment.comment }}</p>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+</div>
