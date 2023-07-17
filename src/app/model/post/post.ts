@@ -5,6 +5,6 @@ export default interface IPost {
   is_published: boolean;
   post_id: number;
   title: string;
-  user_id: string;
+  user_id: number;
   view_count: number;
 }
