@@ -1,15 +1,27 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row mb-2">
     <div class="col-md-10 pe-0">
       <h1 class="ps-3 h-100 d-flex align-items-end">asdasdasdasdasdasdasasd</h1>
     </div>
-    <div class="col-md-2 d-flex align-items-end">
+    <div class="col-md-2 d-flex justify-content-end align-items-end">
       <button mat-button [matMenuTriggerFor]="beforeMenu">
         <mat-icon>sort</mat-icon>Sıralama
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="applyFilter('popular')">Popular</button>
-        <button mat-menu-item (click)="applyFilter('a-z')">A-Z</button>
+        <button
+          [routerLink]="'/posts/'"
+          [queryParams]="{ filter: 'popular' }"
+          mat-menu-item
+        >
+          Popular
+        </button>
+        <button
+          [routerLink]="'/posts/'"
+          [queryParams]="{ filter: 'A_Z' }"
+          mat-menu-item
+        >
+          A-Z
+        </button>
         <button mat-menu-item [matMenuTriggerFor]="categoriesMenu">
           Categories
         </button>
@@ -19,7 +31,8 @@
         <button
           mat-menu-item
           *ngFor="let category of categoryList"
-          (click)="applyFilter(category.name)"
+          [routerLink]="'/posts/'"
+          [queryParams]="{ categoryId: category.category_id }"
         >
           {{ category.name }}
         </button>
@@ -29,10 +42,14 @@
   <mat-divider></mat-divider>
   <div class="container_fluid my-4">
     <div class="row">
-      <ng-container *ngFor="let post of postList">
-        <div class="row_card_list col-xl-3 col-lg-4 col-md-6 mb-4">
-          <app-blog-card [post]="post"></app-blog-card>
-        </div>
+      <ng-container *ngFor="let post of (hasQueryParams ? filteredItems : postList)">
+          <div
+
+            [routerLink]="'/posts/detail/' + post.post_id"
+            class="row_card_list col-xl-3 col-lg-4 col-md-6 mb-4"
+          >
+            <app-blog-card [post]="post"></app-blog-card>
+          </div>
       </ng-container>
     </div>
   </div>

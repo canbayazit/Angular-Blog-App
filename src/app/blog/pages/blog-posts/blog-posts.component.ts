@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import ICategory from 'src/app/model/category/category';
 import IPost from 'src/app/model/post/post';
 import { CategoryService } from 'src/app/services/category-service/category.service';
@@ -12,9 +13,12 @@ import { PostService } from 'src/app/services/post-service/post.service';
 export class BlogPostsComponent implements OnInit {
   categoryList: ICategory[] = [];
   postList: IPost[] = [];
+  filteredItems: IPost[] = [];
+  hasQueryParams:boolean = false;
   constructor(
     private categoriesService: CategoryService,
-    private postsService: PostService
+    private postsService: PostService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
     this.categoriesService.getCategories().subscribe((categories) => {
@@ -50,6 +54,35 @@ export class BlogPostsComponent implements OnInit {
       });
       console.log(posts);
     });
+
+    this.route.queryParamMap.subscribe((params) => {
+      const filterSortParam = params.get('filter');
+      const filterCategoryIdParam = params.get('categoryId');
+      this.applySortFilter(filterSortParam || (filterCategoryIdParam ?? null));
+    });
   }
-  applyFilter(filter: string) {}
+
+  applySortFilter(filterParam: string | null): IPost[] {
+    if (!filterParam) {
+      this.hasQueryParams=false;
+      return this.postList;
+    }
+
+    if (filterParam === 'A_Z') {
+      this.hasQueryParams=true;
+      this.filteredItems= this.postList.slice().sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    if (filterParam === 'popular') {
+      this.hasQueryParams=true;
+      this.filteredItems= this.postList.slice().sort((a, b) => b.view_count - a.view_count);
+    }
+
+    if (this.postList.find(data=>(data.category_id===parseInt(filterParam)))) {
+      this.hasQueryParams=true;
+      this.filteredItems= this.postList.filter(data=>data.category_id===parseInt(filterParam))
+    }
+
+    return this.postList;
+  }
 }
