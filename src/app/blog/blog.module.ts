@@ -13,6 +13,9 @@ import { BlogPostDetailComponent } from './pages/blog-post-detail/blog-post-deta
 import { BlogHomeComponent } from './pages/blog-home/blog-home.component';
 import { RouterModule } from '@angular/router';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
+import { NumberAbbreviationPipe } from '../pipes/NumberAbbreviation/number-abbreviation.pipe';
+import { ScrollEventDirective } from '../customDirectives/scroll-event.directive';
+import { DateDiffPipe } from '../pipes/DateDiff/date-diff.pipe';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { BlogCardComponent } from './components/blog-card/blog-card.component';
     BlogCategoriesComponent,
     BlogPostDetailComponent,
     BlogCardComponent,
+    NumberAbbreviationPipe,
+    ScrollEventDirective,
+    DateDiffPipe
 
   ],
   imports: [
