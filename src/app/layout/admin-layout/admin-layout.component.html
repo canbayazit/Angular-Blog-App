@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<div class="container layout">
+  <div class="container layout_header">
+    <app-admin-header></app-admin-header>
+  </div>
+  <div class="container layout_nav">
+    <nav class="mt-5" mat-tab-nav-bar [tabPanel]="tabPanel">
+      <a
+        class="fw-bold"
+        mat-tab-link
+        *ngFor="let link of links"
+        (click)="activeLink = link"
+        [active]="activeLink == link"
+        [routerLink]="'/admin/' + link.path"
+      >
+        {{ link.name }}
+      </a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+    <div class="container pt-4 layout_route">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

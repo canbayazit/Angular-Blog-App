@@ -1,0 +1,10 @@
+.layout{
+  border-radius:0 0 8px 8px;
+  &_route{
+    background-color: #fcfcfc;
+    border-radius:0 0 8px 8px;
+    border: 1px solid #cccccc99;
+    min-height: 100vh;
+    // padding-top: 1px;
+  }
+}
