@@ -8,14 +8,17 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { BlogModule } from './blog/blog.module';
 import { AdminModule } from './admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
+import { UserCardComponent } from './shared/components/user-card/user-card.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BlogModule,
     AdminModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
