@@ -1,0 +1,60 @@
+.category-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .category-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .category-actions {
+      display: flex;
+      gap: 10px;
+
+      .category-action {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: #777;
+
+        &:hover {
+          color: #333;
+        }
+      }
+
+      &.edit {
+        &:hover {
+          color: #ff7b00;
+        }
+      }
+
+      &.delete {
+        &:hover {
+          color: #dc3545;
+        }
+      }
+    }
+  }
+
+  .category-info {
+    .category-date {
+      color: #888;
+      font-size: 14px;
+    }
+  }
+}
