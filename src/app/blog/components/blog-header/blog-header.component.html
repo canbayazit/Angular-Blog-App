@@ -1,6 +1,30 @@
-<mat-toolbar>
-  <button mat-icon-button (click)="onToggleDrawer()" class="me-2">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Allianz Blog App</span>
+<mat-toolbar
+  appScrollEvent
+  class="container d-flex align-items-center justify-content-between"
+>
+  <div class="d-flex justify-content-center align-items-center">
+    <button
+      mat-icon-button
+      (click)="onToggleDrawer()"
+      class="d-flex justify-content-center align-items-center"
+    >
+      <mat-icon class="d-flex justify-content-center align-items-center"
+        >menu</mat-icon
+      >
+    </button>
+    <span class="">Allianz Blog App</span>
+  </div>
+  <div class="container_admin d-flex justify-content-center align-items-center">
+    <span class=""> Admin GİRİŞ </span>
+    <div class="container_admin_icon" [routerLink]="'/admin/user'">
+      <mat-icon
+        class="container_admin_icon_portal pt-1 ms-3 me-2 h-100"
+        svgIcon="portal"
+      ></mat-icon>
+      <mat-icon
+        class="container_admin_icon_entry ms-3 me-2 h-100"
+        svgIcon="entry"
+      ></mat-icon>
+    </div>
+  </div>
 </mat-toolbar>
