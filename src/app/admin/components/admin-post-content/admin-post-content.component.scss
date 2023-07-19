@@ -1,0 +1,78 @@
+.post-detail {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+
+  .buttons-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .tooltip-button {
+    &.edit{
+      color:orange
+    }
+    &.delete{
+      color:red
+    }
+    /* Your button styles */
+  }
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .user-icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    .username {
+      font-weight: bold;
+    }
+
+    .post-date {
+      font-size: 14px;
+      color: #888;
+    }
+  }
+
+  .post-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .post-content {
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .post-comments {
+    margin-top: 20px;
+
+    .comment {
+      margin-bottom: 10px;
+
+      .user-icon {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .comment-username {
+        font-weight: bold;
+      }
+
+      .comment-text {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #888;
+      }
+    }
+  }
+}
