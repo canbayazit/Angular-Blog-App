@@ -1,0 +1,72 @@
+.container {
+  &_info {
+    &:hover{
+      background-color: #efefef;
+    }
+    &_col{
+      height: 100%;
+      // border: 1px solid red;
+      &.active{
+        background-color: #efefef;
+      }
+      &:hover{
+        background-color: #efefef;
+        // border: 1px solid red;
+        &>.container_info_user{
+          h4{
+            color: #2A85FF;
+          }
+          i{
+            color: #2A85FF;
+          }
+        }
+      }
+    }
+    &_user{
+      cursor: pointer;
+      img{
+        width: 50px;
+        height: 50px;
+      }
+      h4{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.71429;
+        color: #6F767E;
+        max-width: 120px;
+      }
+    }
+    .tooltip-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      position: relative;
+      transition: transform 0.3s;
+      &.edit {
+        &:hover {
+          color: #ff7b00;
+        }
+      }
+
+      &.delete {
+        &:hover {
+          color: #dc3545;
+        }
+      }
+    }
+
+    .tooltip-button:hover {
+      transform: scale(1.2);
+    }
+
+    .col{
+      span{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.7;
+        color: #6F767E;
+      }
+    }
+  }
+}
