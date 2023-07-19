@@ -10,6 +10,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -24,8 +27,10 @@ import {MatChipsModule} from '@angular/material/chips';
     MatExpansionModule,
     MatCardModule,
     MatMenuModule,
-    MatChipsModule
-
+    MatChipsModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatTooltipModule
   ],
   exports: [
     CommonModule,
@@ -38,7 +43,10 @@ import {MatChipsModule} from '@angular/material/chips';
     MatExpansionModule,
     MatCardModule,
     MatMenuModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatTooltipModule
   ],
 })
 export class MaterialUiModule {}
