@@ -38,7 +38,8 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               routerLinkActive="current-active"
-              [routerLink]="'/posts/' + navItem.name"
+              [routerLink]="'/posts/'"
+              [queryParams]="{ categoryId: navItem.category_id }"
               >{{ navItem.name }}</a
             >
           </li>
