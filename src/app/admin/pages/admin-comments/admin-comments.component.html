@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row container_header mt-3 fs-5">
+    <div [ngClass]="isDetailsVisible ? '' : 'mb-3'" class="col-md-3 fw-bold text-secondary d-flex align-items-center">
+      <span>Comment</span>
+    </div>
+    <ng-container *ngIf="isDetailsVisible">
+      <div class="col-md fw-bold text-secondary d-flex align-items-center">
+        <span>Post Title</span>
+      </div>
+      <div class="col-md fw-bold text-secondary d-flex align-items-center">
+        <span>User</span>
+      </div>
+      <div class="col-md fw-bold text-secondary d-flex align-items-center">
+        <span>Confirmed</span>
+      </div>
+      <div class="col-md fw-bold text-secondary d-flex align-items-center">
+        <span>Creation Date</span>
+      </div>
+      <div class="col-md fw-bold text-secondary d-flex align-items-center">
+        <span>Actions</span>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-divider *ngIf="isDetailsVisible" class="mt-3"></mat-divider>
+  <div [ngClass]="isDetailsVisible ? '' : 'd-flex'">
+    <div >
+
+      <div class="row container_info" [ngClass]="isDetailsVisible ? '' : ''">
+        <div
+          [ngClass]="
+            isDetailsVisible
+              ? 'col-3 container_info_col '
+              : 'container_info_col col active'
+          "
+        >
+          <div
+            class="container_info_user d-flex align-items-center py-3"
+            (click)="toggleDetails()"
+          >
+            <img
+              src="../../../../assets/allianz_tower.jpg"
+              alt="User Image"
+              class="me-2"
+            />
+            <h4 class="m-0 ps-2 text-truncate">Titleeeeeeeeeeeeeeeeeeeeeeeee</h4>
+            <i class="bi bi-chevron-compact-right fs-3 pt-1"></i>
+          </div>
+        </div>
+
+        <!-- <mat-divider *ngIf="!isDetailsVisible" class="my-3"></mat-divider> -->
+        <ng-container *ngIf="isDetailsVisible">
+          <div class="col d-flex align-items-center">
+            <span>Email</span>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <span>Posts</span>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <span>Active Status</span>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <span>Creation Date</span>
+          </div>
+          <div class="col d-flex align-items-center">
+            <button mat-icon-button matTooltip="Edit" matTooltipPosition="above" class="tooltip-button edit">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button matTooltip="Delete" matTooltipPosition="above" class="tooltip-button delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+
+          </div>
+        </ng-container>
+        <div class="container" *ngIf="isDetailsVisible" class="">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+
+
+    </div>
+
+    <ng-container *ngIf="!isDetailsVisible">
+      <div class="w-100">
+        <app-admin-comment-detail></app-admin-comment-detail>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
