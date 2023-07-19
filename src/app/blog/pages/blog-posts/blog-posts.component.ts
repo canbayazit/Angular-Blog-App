@@ -19,7 +19,13 @@ export class BlogPostsComponent implements OnInit {
     private categoriesService: CategoryService,
     private postsService: PostService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.route.queryParamMap.subscribe((params) => {
+      const filterSortParam = params.get('filter');
+      const filterCategoryIdParam = params.get('categoryId');
+      this.applySortFilter(filterSortParam || (filterCategoryIdParam ?? null));
+    });
+  }
   ngOnInit() {
     this.categoriesService.getCategories().subscribe((categories) => {
       this.categoryList = categories.map((category) => {
@@ -55,11 +61,7 @@ export class BlogPostsComponent implements OnInit {
       console.log(posts);
     });
 
-    this.route.queryParamMap.subscribe((params) => {
-      const filterSortParam = params.get('filter');
-      const filterCategoryIdParam = params.get('categoryId');
-      this.applySortFilter(filterSortParam || (filterCategoryIdParam ?? null));
-    });
+
   }
 
   applySortFilter(filterParam: string | null): IPost[] {
