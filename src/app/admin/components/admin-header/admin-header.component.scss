@@ -1,0 +1,39 @@
+mat-toolbar {
+  background-color: #fcfcfc;
+  border: 1px solid #cccccc99;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  // padding-left: 0;
+  border-radius: 8px;
+  &.active {
+    box-shadow: 0 0px 20px #000;
+    border-bottom: 1px solid red;
+  }
+  .container_admin {
+    &_icon {
+      position: relative;
+      cursor: pointer;
+      &:hover > .container_admin_icon_portal {
+        opacity: 1;
+        transition: opacity 300ms ease-in-out;
+      }
+      &:hover > .container_admin_icon_entry {
+        opacity: 0;
+        transition: opacity 300ms ease-in-out;
+      }
+      &_portal {
+        position: relative;
+        opacity: 0;
+        transition: opacity 300ms ease-in-out;
+        color: #1818ba;
+      }
+      &_entry {
+        position: absolute;
+        right: 0;
+        opacity: 1;
+        transition: opacity 300ms ease-in-out;
+      }
+    }
+  }
+}
