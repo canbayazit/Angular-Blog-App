@@ -25,28 +25,28 @@
       display: flex;
       gap: 10px;
 
-      .category-action {
-        background: transparent;
+      .tooltip-button {
+        background-color: transparent;
         border: none;
         cursor: pointer;
-        font-size: 20px;
-        color: #777;
+        margin-right: 10px;
+        position: relative;
+        transition: transform 0.3s;
+        &.edit {
+          &:hover {
+            color: #ff7b00;
+          }
+        }
 
-        &:hover {
-          color: #333;
+        &.delete {
+          &:hover {
+            color: #dc3545;
+          }
         }
       }
 
-      &.edit {
-        &:hover {
-          color: #ff7b00;
-        }
-      }
-
-      &.delete {
-        &:hover {
-          color: #dc3545;
-        }
+      .tooltip-button:hover {
+        transform: scale(1.2);
       }
     }
   }
