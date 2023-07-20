@@ -9,9 +9,10 @@ import { BlogPostDetailComponent } from './blog/pages/blog-post-detail/blog-post
 import { BlogCategoriesComponent } from './blog/pages/blog-categories/blog-categories.component';
 import { BlogUsersComponent } from './blog/pages/blog-users/blog-users.component';
 import { AdminCategoryComponent } from './admin/pages/admin-category/admin-category.component';
-import { AdminCommentsComponent } from './admin/pages/admin-comments/admin-comments.component';
-import { AdminPostsComponent } from './admin/pages/admin-posts/admin-posts.component';
 import { AdminUserComponent } from './admin/pages/admin-user/admin-user.component';
+import { AdminPostsComponent } from './admin/pages/admin-posts/admin-posts.component';
+import { AdminCommentsComponent } from './admin/pages/admin-comments/admin-comments.component';
+
 
 const routes: Routes = [
   {
