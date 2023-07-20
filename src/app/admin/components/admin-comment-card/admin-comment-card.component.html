@@ -4,18 +4,15 @@
     alt="User Avatar"
   />
   <div class="comment-details">
-    <div class="d-flex justify-content-between">
-      <h4>John Doe</h4>
-      <small>July 19, 2023</small>
+    <div class="d-flex justify-content-end">
+      <small>{{comment?.creation_date | timestampToDate | date:'dd/MM/yyyy'}}</small>
     </div>
     <p class="w-75">
-      Lorem ipsum dolor sit amet, consectetuseeur adipiscing elit.
-      Vestibulum non rutrum magna. Sed aliquam iaculis ante ac
-      tempus.
+      {{comment?.comment}}
     </p>
     <div class="buttons">
       <button class="edit-btn">
-        <i class="bi bi-pencil-fill"></i> Edit
+        <i class="bi bi-pencil-fill" (click)="openEditModal()"></i> Edit
       </button>
       <button class="delete-btn">
         <i class="bi bi-trash-fill"></i> Delete
