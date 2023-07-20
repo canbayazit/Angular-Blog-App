@@ -1,4 +1,46 @@
 .container {
+  .mat-paginator-container {
+    margin-top: 10px;
+
+    mat-paginator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      button.mat-paginator-navigation {
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e9ecef;
+        }
+
+        &:disabled {
+          background-color: #f8f9fa;
+          cursor: not-allowed;
+        }
+
+        &.mat-button-disabled {
+          opacity: 0.6;
+        }
+      }
+
+      .mat-paginator-range-label {
+        font-size: 14px;
+        color: #6f767e;
+      }
+    }
+
+    .mat-select {
+      min-width: 80px;
+      font-size: 14px;
+      color: #6f767e;
+    }
+  }
   &_info {
     &:hover{
       background-color: #efefef;
@@ -68,5 +110,12 @@
         color: #6F767E;
       }
     }
+    .user-email{
+
+      span{
+        max-width: 125px;
+      }
+    }
   }
+
 }

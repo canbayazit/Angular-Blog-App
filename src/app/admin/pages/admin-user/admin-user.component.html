@@ -1,6 +1,31 @@
 <div class="container">
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+    </div>
+    <div class="col-md-6 text-end">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="nextPage()"
+        [disabled]="userList.length < pageSize"
+      >
+        Next
+      </button>
+    </div>
+  </div>
   <div class="row container_header mt-3 fs-5">
-    <div [ngClass]="isDetailsVisible ? '' : 'mb-3'" class="col-md-3 fw-bold text-secondary d-flex align-items-center">
+    <div
+      [ngClass]="isDetailsVisible ? '' : 'mb-3'"
+      class="col-md-3 fw-bold text-secondary d-flex align-items-center"
+    >
       <span>User Name</span>
     </div>
     <ng-container *ngIf="isDetailsVisible">
@@ -27,68 +52,77 @@
 
   <mat-divider *ngIf="isDetailsVisible" class="mt-3"></mat-divider>
   <div [ngClass]="isDetailsVisible ? '' : 'd-flex'">
-    <div >
-
-      <div class="row container_info" [ngClass]="isDetailsVisible ? '' : ''">
-        <div
-          [ngClass]="
-            isDetailsVisible
-              ? 'col-3 container_info_col '
-              : 'container_info_col col active'
-          "
-        >
+    <div>
+      <ng-container *ngFor="let user of userList; let i = index">
+        <div class="row container_info" >
           <div
-            class="container_info_user d-flex align-items-center py-3"
-            (click)="toggleDetails()"
+            (click)="isSelected(i)"
+            [ngClass]="
+            isDetailsVisible
+                ? 'col-3 container_info_col '
+                : i === selectedIndex ? 'container_info_col col active' : 'container_info_col col'
+            "
           >
-            <img
-              src="../../../../assets/simpson_user.png"
-              alt="User Image"
-              class="me-2"
-            />
-            <h4 class="m-0 ps-2 text-truncate">@Usernameasdasdasdasdaasdafas</h4>
-            <i class="bi bi-chevron-compact-right fs-3 pt-1"></i>
+            <div
+              class="container_info_user d-flex align-items-center py-3"
+              (click)="toggleDetails()"
+            >
+              <img
+                src="../../../../assets/simpson_user.png"
+                alt="User Image"
+                class="me-2"
+              />
+              <h4 class="m-0 ps-2 text-truncate">@{{ user.username }}</h4>
+              <i class="bi bi-chevron-compact-right fs-3 pt-1"></i>
+            </div>
+          </div>
+
+          <!-- <mat-divider *ngIf="!isDetailsVisible" class="my-3"></mat-divider> -->
+          <ng-container *ngIf="isDetailsVisible">
+            <div class="col user-email d-flex align-items-center">
+              <span class="text-truncate">{{ user.email }}</span>
+            </div>
+
+            <div class="col d-flex align-items-center">
+              <span>Posts</span>
+            </div>
+
+            <div class="col d-flex align-items-center">
+              <span>Comments</span>
+            </div>
+
+            <div class="col d-flex align-items-center">
+              <span>{{ user.is_active }}</span>
+            </div>
+
+            <div class="col d-flex align-items-center">
+              <span>{{ user.creation_date }}</span>
+            </div>
+            <div class="col d-flex align-items-center">
+              <button
+                mat-icon-button
+                matTooltip="Edit"
+                matTooltipPosition="above"
+                class="tooltip-button edit"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                class="tooltip-button delete"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+          <div class="container" *ngIf="isDetailsVisible" class="">
+            <mat-divider></mat-divider>
           </div>
         </div>
-
-        <!-- <mat-divider *ngIf="!isDetailsVisible" class="my-3"></mat-divider> -->
-        <ng-container *ngIf="isDetailsVisible">
-          <div class="col d-flex align-items-center">
-            <span>Email</span>
-          </div>
-
-          <div class="col d-flex align-items-center">
-            <span>Posts</span>
-          </div>
-
-          <div class="col d-flex align-items-center">
-            <span>Comments</span>
-          </div>
-
-          <div class="col d-flex align-items-center">
-            <span>Active Status</span>
-          </div>
-
-          <div class="col d-flex align-items-center">
-            <span>Creation Date</span>
-          </div>
-          <div class="col d-flex align-items-center">
-            <button mat-icon-button matTooltip="Edit" matTooltipPosition="above" class="tooltip-button edit">
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button mat-icon-button matTooltip="Delete" matTooltipPosition="above" class="tooltip-button delete">
-              <mat-icon>delete</mat-icon>
-            </button>
-
-
-          </div>
-        </ng-container>
-        <div class="container" *ngIf="isDetailsVisible" class="">
-          <mat-divider></mat-divider>
-        </div>
-      </div>
-      
+      </ng-container>
     </div>
 
     <ng-container *ngIf="!isDetailsVisible">
