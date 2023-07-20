@@ -1,0 +1,64 @@
+<h2 mat-dialog-title class="dialog-title">Edit Comment</h2>
+<div mat-dialog-content class="dialog_form">
+  <form [formGroup]="editCommentForm" class="form_content">
+    <!-- Username Input -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input class="form-control" id="username" matInput placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="editCommentForm.controls['username'].invalid && editCommentForm.controls['username'].touched">
+        Username is required.
+      </mat-error>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" id="email" matInput placeholder="Email" formControlName="email" />
+      <mat-error *ngIf="editCommentForm.controls['email'].invalid && editCommentForm.controls['email'].touched">
+        Email is required.
+      </mat-error>
+    </div>
+
+    <!-- Creation Date Input -->
+    <div class="form-group">
+      <label for="creationDate">Creation Date</label>
+      <input
+        class="form-control"
+        id="creationDate"
+        [matDatepicker]="datepicker"
+        placeholder="Creation Date"
+        formControlName="creation_date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+      <mat-error
+        *ngIf="editCommentForm.controls['creation_date'].invalid && editCommentForm.controls['creation_date'].touched"
+      >
+        Creation Date is required.
+      </mat-error>
+      <span *ngIf="editCommentForm.get('creation_date')?.valid">
+        {{ editCommentForm.get('creation_date')?.value | date: 'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <!-- User ID Input -->
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input class="form-control" id="userId" matInput placeholder="User ID" formControlName="user_id" />
+    </div>
+
+    <!-- Is Active Checkbox -->
+    <div class="form-group form-check">
+      <label for="isActive">Is Active</label>
+      <mat-checkbox id="isActive" formControlName="is_active"></mat-checkbox>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions me-2">
+  <button mat-button class="cancel-btn" (click)="onNoClick()">
+    <mat-icon>cancel</mat-icon> Cancel
+  </button>
+  <button mat-button class="save-btn" [disabled]="!editCommentForm.valid" (click)="onSaveClick()">
+    <mat-icon>save</mat-icon> Edit
+  </button>
+</div>
