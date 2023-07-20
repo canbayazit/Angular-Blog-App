@@ -15,7 +15,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatInputModule} from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -36,6 +40,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatTooltipModule,
     MatPaginatorModule,
     MatBadgeModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -54,6 +63,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatTooltipModule,
     MatPaginatorModule,
     MatBadgeModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
 })
 export class MaterialUiModule {}
