@@ -19,7 +19,6 @@ export class PostService {
       return collectionData(collectionInstance).pipe(
         map((documents) =>
           documents.filter((doc) => {
-            console.log((doc['post_id'],id,"IDLER"))
             return doc['post_id']===id
           })
         )
@@ -28,7 +27,6 @@ export class PostService {
       return collectionData(collectionInstance).pipe(
         map((documents) =>
           documents.filter((doc) => {
-            console.log((doc['user_id'],id,"IDLER"))
             return doc['user_id']===id
           })
         )
@@ -37,7 +35,6 @@ export class PostService {
       return collectionData(collectionInstance).pipe(
         map((documents) =>
           documents.filter((doc) => {
-            console.log((doc['category_id'],id,"IDLER"))
             return doc['category_id']===id
           })
         )

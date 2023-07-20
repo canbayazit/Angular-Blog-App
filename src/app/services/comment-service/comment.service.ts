@@ -56,35 +56,4 @@ export class CommentService {
       return false;
     }
   }
-
-  // try {
-  //   // Query for the document with the matching commentId
-  //   const q = query(
-  //     collection(this.firestore, 'comments'),
-  //     where('comment_id', '==', updatedComment.comment_id.toString())
-  //   );
-  //   console.log(updatedComment.comment_id,"updatedComment.comment_id")
-  //   console.log(q,"q")
-
-  //   const querySnapshot = await getDocs(q);
-
-  //   // Get the first document (assuming there is only one with the same commentId)
-  //   const docSnapshot = querySnapshot.docs[0];
-  //     console.log(docSnapshot,"docSnapshot")
-  //   if (docSnapshot) {
-  //     const commentDocRef = doc(this.firestore, 'comments', docSnapshot.id);
-  //     return updateDoc(commentDocRef, updatedComment);
-  //   } else {
-  //     // Handle the case where no document with the matching commentId is found
-  //     console.error(
-  //       'Comment not found with comment_id:',
-  //       updatedComment.comment_id
-  //     );
-  //     return null;
-  //   }
-  // } catch (error) {
-  //   // Handle any errors that may occur during the update process
-  //   console.error('Error updating comment:', error);
-  //   return null;
-  // }
 }
