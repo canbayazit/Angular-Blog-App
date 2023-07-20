@@ -56,7 +56,7 @@
       <ng-container *ngFor="let user of userList; let i = index">
         <div class="row container_info" >
           <div
-            (click)="isSelected(i)"
+            (click)="isSelected(i,user.user_id)"
             [ngClass]="
             isDetailsVisible
                 ? 'col-3 container_info_col '
@@ -127,7 +127,7 @@
 
     <ng-container *ngIf="!isDetailsVisible">
       <div class="w-100">
-        <app-admin-user-detail></app-admin-user-detail>
+        <app-admin-user-detail [userId]="!isDetailsVisible && userId"></app-admin-user-detail>
       </div>
     </ng-container>
   </div>

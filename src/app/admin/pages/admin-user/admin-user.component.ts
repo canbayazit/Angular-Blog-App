@@ -14,7 +14,7 @@ export class AdminUserComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 10;
   selectedIndex: number = -1;
-
+  userId?:number;
 
   constructor(private userService: UserService) {}
   ngOnInit() {
@@ -23,11 +23,12 @@ export class AdminUserComponent implements OnInit {
   toggleDetails() {
     this.isDetailsVisible = !this.isDetailsVisible;
   }
-  isSelected(index: number) {
+  isSelected(index: number,user_id:number) {
     if (this.selectedIndex === index) {
-      this.selectedIndex = -1; 
+      this.selectedIndex = -1;
     } else {
       this.selectedIndex = index;
+      this.userId=user_id;
     }
   }
   loadUsers() {
