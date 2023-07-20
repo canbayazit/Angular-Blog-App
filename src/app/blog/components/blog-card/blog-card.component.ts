@@ -36,7 +36,7 @@ export class BlogCardComponent implements OnInit {
       }
     })
 
-    this.commentService.getAllCommentByPostId(this.post?.post_id).subscribe((commentCount)=>{
+    this.commentService.getCommentById(this.post?.post_id,"post")?.subscribe((commentCount)=>{
         this.commentCount=commentCount.length;
     })
   }

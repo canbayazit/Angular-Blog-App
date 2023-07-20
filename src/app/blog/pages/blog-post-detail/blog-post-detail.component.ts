@@ -27,7 +27,7 @@ export class BlogPostDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       // id'e göre tek bir post çeken service
-      this.postService.getPostById(parseInt(id)).subscribe((posts) => {
+      this.postService.getPostById(parseInt(id),"post")?.subscribe((posts) => {
         if (posts.length > 0) {
           const data = posts[0];
           console.log(data['category_id'],"data")
@@ -56,7 +56,7 @@ export class BlogPostDetailComponent implements OnInit {
         }
       });
       // post id'e göre o posta ait comment'ları çeken service.
-      this.commentService.getAllCommentByPostId(parseInt(id)).subscribe((comments) => {
+      this.commentService.getCommentById(parseInt(id),"post")?.subscribe((comments) => {
         if (comments.length > 0) {
           comments.forEach((commentData) => {
             const {
