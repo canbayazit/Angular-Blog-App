@@ -6,12 +6,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { RouterModule } from '@angular/router';
 
-import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
 import { AdminUserDetailComponent } from './components/admin-user-detail/admin-user-detail.component';
 import { AdminCommentCardComponent } from './components/admin-comment-card/admin-comment-card.component';
-import { AdminBlogCardComponent } from './components/admin-blog-card/admin-blog-card.component';
 import { AdminPostDetailComponent } from './components/admin-post-detail/admin-post-detail.component';
-import { AdminPostContentComponent } from './components/admin-post-content/admin-post-content.component';
 import { AdminCommentDetailComponent } from './components/admin-comment-detail/admin-comment-detail.component';
 import { AdminUserCardComponent } from './components/admin-user-card/admin-user-card.component';
 import { AdminUserComponent } from './pages/admin-user/admin-user.component';
@@ -22,6 +19,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { AdminEditCommentDialogComponent } from './components/admin-edit-comment-dialog/admin-edit-comment-dialog.component';
 import { TimestampToDatePipe } from '../pipes/timestampToDate/timestamp-to-date.pipe';
+import { AdminEditUserDialogComponent } from './components/admin-edit-user-dialog/admin-edit-user-dialog.component';
+import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
+import { AdminPostCardComponent } from './components/admin-post-card/admin-post-card.component';
+import { AdminEditPostDialogComponent } from './components/admin-edit-post-dialog/admin-edit-post-dialog.component';
 
 
 @NgModule({
@@ -34,13 +35,14 @@ import { TimestampToDatePipe } from '../pipes/timestampToDate/timestamp-to-date.
     AdminCategoryComponent,
     AdminUserDetailComponent,
     AdminCommentCardComponent,
-    AdminBlogCardComponent,
     AdminPostDetailComponent,
-    AdminPostContentComponent,
     AdminCommentDetailComponent,
     AdminUserCardComponent,
     AdminEditCommentDialogComponent,
-    TimestampToDatePipe
+    TimestampToDatePipe,
+    AdminEditUserDialogComponent,
+    AdminPostCardComponent,
+    AdminEditPostDialogComponent
 
   ],
   imports: [
