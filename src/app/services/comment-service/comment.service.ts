@@ -8,6 +8,15 @@ import { map } from 'rxjs';
 export class CommentService {
 
   constructor(private firestore: Firestore) {}
+
+  getCommentByPaginator(page:number,pageSize:number){
+    const collectionInstance = collection(this.firestore, 'comments');
+    return collectionData(collectionInstance).pipe(
+      map((comments) => {
+        return  comments.slice((page - 1) * pageSize, page * pageSize);
+      })
+    );
+  }
   getComments() {
     const collectionInstance = collection(this.firestore, 'comments');
     return collectionData(collectionInstance); // bu fonksiyon observable dönüyor
