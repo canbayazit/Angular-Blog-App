@@ -1,0 +1,66 @@
+<h2 mat-dialog-title class="dialog-title">Edit Post</h2>
+<div mat-dialog-content class="dialog_form">
+  <form [formGroup]="editPostForm" class="form_content">
+    <!-- Title Input -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input class="form-control" id="title" matInput placeholder="Title" formControlName="title" />
+      <mat-error *ngIf="editPostForm.controls['title'].invalid && editPostForm.controls['title'].touched">
+        Title is required.
+      </mat-error>
+    </div>
+
+    <!-- Content Textarea -->
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="form-control" id="content" matInput placeholder="Content" formControlName="content"></textarea>
+      <mat-error *ngIf="editPostForm.controls['content'].invalid && editPostForm.controls['content'].touched">
+        Content is required.
+      </mat-error>
+    </div>
+
+    <!-- Creation Date Input -->
+    <div class="form-group">
+      <label for="creationDate">Creation Date</label>
+      <input class="form-control" id="creationDate" [matDatepicker]="datepicker" placeholder="Creation Date" formControlName="creation_date" />
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+      <mat-error *ngIf="editPostForm.controls['creation_date'].invalid && editPostForm.controls['creation_date'].touched">
+        Creation Date is required.
+      </mat-error>
+      <span *ngIf="editPostForm.get('creation_date')?.valid">{{ editPostForm.get('creation_date')?.value | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+
+    <!-- Post ID Input -->
+    <div class="form-group">
+      <label for="postId">Post ID</label>
+      <input class="form-control" id="postId" matInput placeholder="Post ID" formControlName="post_id" />
+    </div>
+
+    <!-- User ID Input -->
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input class="form-control" id="userId" matInput placeholder="User ID" formControlName="user_id" />
+    </div>
+
+    <!-- Category ID Input -->
+    <div class="form-group">
+      <label for="categoryId">Category ID</label>
+      <input class="form-control" id="categoryId" matInput placeholder="Category ID" formControlName="category_id" />
+    </div>
+
+    <!-- Is Published Checkbox -->
+    <div class="form-group form-check">
+      <label for="isPublished">Is Published</label>
+      <mat-checkbox  id="isPublished" formControlName="is_published"></mat-checkbox>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions me-2">
+  <button mat-button class="cancel-btn" (click)="onNoClick()">
+    <mat-icon>cancel</mat-icon> Cancel
+  </button>
+  <button mat-button class="save-btn" [disabled]="!editPostForm.valid" (click)="onSaveClick()">
+    <mat-icon>save</mat-icon> Edit
+  </button>
+</div>
