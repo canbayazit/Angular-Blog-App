@@ -84,11 +84,11 @@
             </div>
 
             <div class="col d-flex align-items-center">
-              <span>Posts</span>
+              <span>{{user.totalPost}}</span>
             </div>
 
             <div class="col d-flex align-items-center">
-              <span>Comments</span>
+              <span>{{user.totalComment}}</span>
             </div>
 
             <div class="col d-flex align-items-center">
@@ -96,7 +96,7 @@
             </div>
 
             <div class="col d-flex align-items-center">
-              <span>{{ user.creation_date }}</span>
+              <span>{{ user.creation_date | timestampToDate | date:'dd/MM/yyyy' }}</span>
             </div>
             <div class="col d-flex align-items-center">
               <button
@@ -104,6 +104,7 @@
                 matTooltip="Edit"
                 matTooltipPosition="above"
                 class="tooltip-button edit"
+                (click)="openEditModal(user)"
               >
                 <mat-icon>edit</mat-icon>
               </button>
