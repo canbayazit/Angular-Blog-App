@@ -1,13 +1,25 @@
 <div class="container">
-  <div class="category-card">
+  <div class="add-button">
+    <button
+      (click)="openAddModal()"
+      matTooltip="Add Category"
+      matTooltipPosition="above"
+      class="tooltip-button add"
+    >
+      <mat-icon>add</mat-icon>
+      ADD NEW CATEGORY
+    </button>
+  </div>
+  <div class="category-card mb-4" *ngFor="let category of categoryList">
     <div class="category-header">
-      <h3 class="category-title">Category Name</h3>
+      <h3 class="category-title">{{category.name}}</h3>
       <div class="category-actions">
         <button
           mat-icon-button
           matTooltip="Edit"
           matTooltipPosition="above"
           class="tooltip-button edit"
+          (click)="openEditModal(category)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -23,7 +35,7 @@
       </div>
     </div>
     <div class="category-info">
-      <p class="category-date">Created on July 19, 2023</p>
+      <p class="category-date">Created on {{category.creation_date | timestampToDate | date:'dd/MM/yyyy'}}</p>
     </div>
   </div>
 </div>
