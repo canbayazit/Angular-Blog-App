@@ -1,0 +1,51 @@
+<h2 mat-dialog-title class="dialog-title">Edit Comment</h2>
+<div mat-dialog-content class="dialog_form">
+  <form [formGroup]="addCategoryForm" class="form_content">
+
+    <!-- Category Input -->
+    <div class="form-group">
+      <label for="name">Category Name</label>
+      <input class="form-control" id="name" matInput placeholder="Category Name" formControlName="name" />
+      <mat-error *ngIf="addCategoryForm.controls['name'].invalid && addCategoryForm.controls['name'].touched">
+        Category Name is required.
+      </mat-error>
+    </div>
+
+    <!-- Creation Date Input -->
+    <div class="form-group">
+      <label for="creationDate">Creation Date</label>
+      <input
+        class="form-control"
+        id="creationDate"
+        [matDatepicker]="datepicker"
+        placeholder="Creation Date"
+        formControlName="creation_date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+      <mat-error
+        *ngIf="addCategoryForm.controls['creation_date'].invalid && addCategoryForm.controls['creation_date'].touched"
+      >
+        Creation Date is required.
+      </mat-error>
+      <span *ngIf="addCategoryForm.get('creation_date')?.valid">
+        {{ addCategoryForm.get('creation_date')?.value | date: 'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <!-- Category ID Input -->
+    <div class="form-group">
+      <label for="categoryId">Category ID</label>
+      <input class="form-control" id="categoryId" matInput placeholder="Category ID" formControlName="category_id" />
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-actions me-2">
+  <button mat-button class="cancel-btn" (click)="onNoClick()">
+    <mat-icon>cancel</mat-icon> Cancel
+  </button>
+  <button mat-button class="save-btn" [disabled]="!addCategoryForm.valid" (click)="onSaveClick()">
+    <mat-icon>add</mat-icon> Add
+  </button>
+</div>
