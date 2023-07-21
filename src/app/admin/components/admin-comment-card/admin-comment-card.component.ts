@@ -1,5 +1,4 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import IComment from 'src/app/model/comment/comment';
 import { AdminEditCommentDialogComponent } from '../admin-edit-comment-dialog/admin-edit-comment-dialog.component';
@@ -15,7 +14,6 @@ export class AdminCommentCardComponent {
   openEditModal(): void {
     const dialogRef = this.dialog.open(AdminEditCommentDialogComponent, {
       width:'60%',
-
       data: this.comment,
     });
 

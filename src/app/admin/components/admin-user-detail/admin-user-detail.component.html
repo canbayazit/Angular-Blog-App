@@ -2,7 +2,7 @@
   <mat-tab-group class="full-width">
     <mat-tab class="d-flex flex-wrap w-100" label="User Posts">
       <div class="gap-3 mt-3 " *ngFor="let item of postList">
-        <app-admin-blog-card [post]="item"></app-admin-blog-card>
+        <app-admin-post-card [post]="item"></app-admin-post-card>
       </div>
     </mat-tab>
     <mat-tab label="User Comments">
