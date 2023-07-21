@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import IComment from 'src/app/model/comment/comment';
 import IPost from 'src/app/model/post/post';
@@ -12,17 +12,19 @@ import { AdminEditPostDialogComponent } from '../admin-edit-post-dialog/admin-ed
   templateUrl: './admin-post-card.component.html',
   styleUrls: ['./admin-post-card.component.scss'],
 })
-export class AdminPostCardComponent implements OnInit {
+export class AdminPostCardComponent implements OnChanges {
   @Input() post?: IPost;
+  @Input() userId?: number;
   user?: IUser;
   commentList: IComment[] = [];
+
   constructor(
     private commentService: CommentService,
     private userService: UserService,
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.post?.user_id) {
       this.userService.getUserById(this.post?.user_id).subscribe((users) => {
         if (users.length > 0) {
@@ -70,6 +72,7 @@ export class AdminPostCardComponent implements OnInit {
       });
     }
   }
+
 
   openEditModal(){
     const dialogRef = this.dialog.open(AdminEditPostDialogComponent, {
