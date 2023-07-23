@@ -12,6 +12,9 @@ import { AdminCategoryComponent } from './admin/pages/admin-category/admin-categ
 import { AdminUserComponent } from './admin/pages/admin-user/admin-user.component';
 import { AdminPostsComponent } from './admin/pages/admin-posts/admin-posts.component';
 import { AdminCommentsComponent } from './admin/pages/admin-comments/admin-comments.component';
+import { AdminUserDetailComponent } from './admin/components/admin-user-detail/admin-user-detail.component';
+import { AdminPostDetailComponent } from './admin/components/admin-post-detail/admin-post-detail.component';
+import { AdminCommentDetailComponent } from './admin/components/admin-comment-detail/admin-comment-detail.component';
 
 
 const routes: Routes = [
@@ -52,10 +55,24 @@ const routes: Routes = [
       {
         path: 'user',
         component: AdminUserComponent,
+        children: [
+          {
+            path: 'detail/:id',
+            component: AdminUserDetailComponent,
+
+          },
+        ]
       },
+
       {
         path: 'post',
         component: AdminPostsComponent,
+        children: [
+          {
+            path: 'detail/:id',
+            component: AdminPostDetailComponent,
+          },
+        ]
       },
       {
         path: 'category',
@@ -64,7 +81,14 @@ const routes: Routes = [
       {
         path: 'comment',
         component: AdminCommentsComponent,
+        children: [
+          {
+            path: 'detail',
+            component: AdminCommentDetailComponent,
+          },
+        ]
       },
+
     ],
   },
 ];
