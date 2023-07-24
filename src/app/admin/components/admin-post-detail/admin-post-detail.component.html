@@ -1,10 +1,17 @@
 <div class="container ps-5">
   <mat-tab-group class="full-width">
     <mat-tab label="Post Content">
-      <app-admin-post-card></app-admin-post-card>
+      <ng-container *ngIf="postList.length === 0; else postsContent">
+        <div class="alert alert-warning mt-3" role="alert">No posts available.</div>
+      </ng-container>
+      <ng-template #postsContent>
+        <div class="gap-3 mt-3" *ngFor="let post of postList">
+          <app-admin-post-card [post]="post"></app-admin-post-card>
+        </div>
+      </ng-template>
     </mat-tab>
-    <mat-tab label="Post Comments">
-      <app-admin-comment-card></app-admin-comment-card>
-    </mat-tab>
+    <!-- <mat-tab label="Post Comments">
+      <app-admin-comment-card ></app-admin-comment-card>
+    </mat-tab> -->
   </mat-tab-group>
 </div>
