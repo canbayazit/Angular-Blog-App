@@ -1,14 +1,24 @@
 <div class="container ps-5">
   <mat-tab-group class="full-width">
     <mat-tab class="d-flex flex-wrap w-100" label="User Posts">
-      <div class="gap-3 mt-3 " *ngFor="let item of postList">
-        <app-admin-post-card [post]="item"></app-admin-post-card>
-      </div>
+      <ng-container *ngIf="postList.length === 0; else postsContent">
+        <div class="alert alert-warning mt-3" role="alert">No posts available.</div>
+      </ng-container>
+      <ng-template #postsContent>
+        <div class="gap-3 mt-3" *ngFor="let item of postList">
+          <app-admin-post-card [post]="item"></app-admin-post-card>
+        </div>
+      </ng-template>
     </mat-tab>
     <mat-tab label="User Comments">
-      <ng-container *ngFor="let item of commentList">
-        <app-admin-comment-card [comment]="item"> </app-admin-comment-card>
+      <ng-container *ngIf="commentList.length === 0; else commentsContent">
+        <div class="alert alert-warning mt-3" role="alert">No comments available.</div>
       </ng-container>
+      <ng-template #commentsContent>
+        <ng-container *ngFor="let item of commentList">
+          <app-admin-comment-card [comment]="item"></app-admin-comment-card>
+        </ng-container>
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 </div>

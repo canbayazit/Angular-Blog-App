@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import IComment from 'src/app/model/comment/comment';
 import IPost from 'src/app/model/post/post';
 import { CommentService } from 'src/app/services/comment-service/comment.service';
@@ -9,26 +10,26 @@ import { PostService } from 'src/app/services/post-service/post.service';
   templateUrl: './admin-user-detail.component.html',
   styleUrls: ['./admin-user-detail.component.scss'],
 })
-export class AdminUserDetailComponent implements OnChanges {
-  @Input() userId?: number;
+export class AdminUserDetailComponent implements OnInit {
   postList: IPost[] = [];
   commentList: IComment[] = [];
   constructor(
     private postService:PostService,
-    private commentService:CommentService
+    private commentService:CommentService,
+    private route: ActivatedRoute
   ){
 
   }
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['userId'] && changes['userId'].currentValue) {
-      this.loadPosts(this.userId);
-      this.loadComments(this.userId);
-    }
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      this.loadPosts(parseInt(id));
+        this.loadComments(parseInt(id));
+    })
   }
 
   loadPosts(userId?: number) {
     if (userId) {
-      console.log(userId,"karşılaştır")
       this.postService.getPostById(userId, 'user')?.subscribe((posts) => {
         this.postList = posts.map((post) => {
           const {

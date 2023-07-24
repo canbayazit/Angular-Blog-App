@@ -1,24 +1,16 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-md-6">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="previousPage()"
-        [disabled]="currentPage === 1"
-      >
-        Previous
-      </button>
-    </div>
-    <div class="col-md-6 text-end">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="nextPage()"
-        [disabled]="userList.length < pageSize"
-      >
-        Next
-      </button>
+  <div class="container-fluid d-flex text-nowrap table-container justify-content-end">
+
+    <div class="d-flex align-items-center gap-3 justify-content-end">
+      <p style="margin-bottom: 0px; text-align: center !important;">{{ currentPage }} / {{ totalPage }}</p>
+      <div class="gap-2 d-flex">
+        <button mat-raised-button color="primary" (click)="previousPage()" [disabled]="currentPage === 1">
+          <mat-icon class="d-flex align-items-center fs-3" >chevron_left</mat-icon>
+        </button>
+        <button mat-raised-button class="d-flex align-items-center" color="primary" (click)="nextPage()" [disabled]="currentPage === totalPage">
+          <mat-icon class="d-flex align-items-center fs-3">chevron_right</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
   <div class="row container_header mt-3 fs-5">
@@ -56,7 +48,7 @@
       <ng-container *ngFor="let user of userList; let i = index">
         <div class="row container_info" >
           <div
-            (click)="isSelected(i,user.user_id)"
+            (click)="handleClick(i,user.user_id)"
             [ngClass]="
             isDetailsVisible
                 ? 'col-3 container_info_col '
@@ -65,7 +57,7 @@
           >
             <div
               class="container_info_user d-flex align-items-center py-3"
-              (click)="toggleDetails()"
+
             >
               <img
                 src="../../../../assets/simpson_user.png"
@@ -114,6 +106,7 @@
                 matTooltip="Delete"
                 matTooltipPosition="above"
                 class="tooltip-button delete"
+                (click)="deleteUser(user)"
               >
                 <mat-icon>delete</mat-icon>
               </button>
@@ -128,7 +121,7 @@
 
     <ng-container *ngIf="!isDetailsVisible">
       <div class="w-100">
-        <app-admin-user-detail [userId]="!isDetailsVisible && userId"></app-admin-user-detail>
+        <router-outlet></router-outlet>
       </div>
     </ng-container>
   </div>
