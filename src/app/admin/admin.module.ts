@@ -23,6 +23,8 @@ import { AdminEditUserDialogComponent } from './components/admin-edit-user-dialo
 import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
 import { AdminPostCardComponent } from './components/admin-post-card/admin-post-card.component';
 import { AdminEditPostDialogComponent } from './components/admin-edit-post-dialog/admin-edit-post-dialog.component';
+import { AdminAddCategoryDialogComponent } from './components/admin-add-category-dialog/admin-add-category-dialog.component';
+import { AdminEditCategoryDialogComponent } from './components/admin-edit-category-dialog/admin-edit-category-dialog.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { AdminEditPostDialogComponent } from './components/admin-edit-post-dialo
     TimestampToDatePipe,
     AdminEditUserDialogComponent,
     AdminPostCardComponent,
-    AdminEditPostDialogComponent
+    AdminEditPostDialogComponent,
+    AdminAddCategoryDialogComponent,
+    AdminEditCategoryDialogComponent
 
   ],
   imports: [
