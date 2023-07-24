@@ -6,6 +6,7 @@ import IUser from 'src/app/model/user/user';
 import { CommentService } from 'src/app/services/comment-service/comment.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AdminEditPostDialogComponent } from '../admin-edit-post-dialog/admin-edit-post-dialog.component';
+import { PostService } from 'src/app/services/post-service/post.service';
 
 @Component({
   selector: 'app-admin-post-card',
@@ -14,12 +15,13 @@ import { AdminEditPostDialogComponent } from '../admin-edit-post-dialog/admin-ed
 })
 export class AdminPostCardComponent implements OnChanges {
   @Input() post?: IPost;
-  @Input() userId?: number;
+  @Input() commentUserId?: number;
   user?: IUser;
   commentList: IComment[] = [];
 
   constructor(
     private commentService: CommentService,
+    private postService: PostService,
     private userService: UserService,
     private dialog: MatDialog
   ) {}
@@ -39,45 +41,50 @@ export class AdminPostCardComponent implements OnChanges {
         }
       });
 
-      this.commentService.getCommentById(this.post?.post_id, 'post')
-      ?.subscribe((comments) => {
-        if (comments.length > 0) {
-          comments.forEach((commentData) => {
-            const {
-              comment,
-              comment_id,
-              creation_date,
-              is_confirmed,
-              post_id,
-              user_id,
-            } = commentData as IComment;
+      this.commentService
+        .getCommentById(this.post?.post_id, 'post')
+        ?.subscribe((comments) => {
+          if (comments.length > 0) {
+            comments.forEach((commentData) => {
+              const {
+                comment,
+                comment_id,
+                creation_date,
+                is_confirmed,
+                post_id,
+                user_id,
+              } = commentData as IComment;
 
-            this.userService.getUserById(user_id).subscribe((users) => {
-              if (users.length > 0) {
-                const userData = users[0];
-                const commentWithUsername: IComment = {
-                  comment,
-                  comment_id,
-                  creation_date,
-                  is_confirmed,
-                  post_id,
-                  user_id,
-                  username: userData['username'],
-                };
-                this.commentList = [...this.commentList, commentWithUsername];
-              }
+              this.userService.getUserById(user_id).subscribe((users) => {
+                if (users.length > 0) {
+                  const userData = users[0];
+                  const commentWithUsername: IComment = {
+                    comment,
+                    comment_id,
+                    creation_date,
+                    is_confirmed,
+                    post_id,
+                    user_id,
+                    username: userData['username'],
+                  };
+                  this.commentList = [...this.commentList, commentWithUsername];
+                }
+              });
             });
-          });
-        }
-      });
+          }
+        });
     }
   }
 
-
-  openEditModal(){
+  deleteUser() {
+    if (this.post?.post_id) {
+      this.postService.deletePost(this.post.post_id);
+    }
+  }
+  openEditModal() {
     const dialogRef = this.dialog.open(AdminEditPostDialogComponent, {
-      width:'60%',
-      data: this.post,  // send data to dialog component
+      width: '60%',
+      data: this.post, // send data to dialog component
     });
 
     dialogRef.afterClosed().subscribe((updatedComment) => {
@@ -87,5 +94,4 @@ export class AdminPostCardComponent implements OnChanges {
       }
     });
   }
-
 }
