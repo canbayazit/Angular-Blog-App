@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { combineLatest, map, of } from 'rxjs';
 import { CommentService } from 'src/app/services/comment-service/comment.service';
 import { PostService } from 'src/app/services/post-service/post.service';
-import { UserService } from 'src/app/services/user-service/user.service';
 import { AdminEditPostDialogComponent } from '../../components/admin-edit-post-dialog/admin-edit-post-dialog.component';
+import { Router } from '@angular/router';
 interface IPost{
   category_id: number;
   content: string;
@@ -15,7 +15,6 @@ interface IPost{
   user_id: number;
   view_count: number;
   totalComment?:number;
-  // commentList:
 }
 @Component({
   selector: 'app-admin-posts',
@@ -25,24 +24,25 @@ interface IPost{
 export class AdminPostsComponent {
   isDetailsVisible:boolean = true;
   postList: IPost[] = [];
+  totalPage:number=1;
   currentPage: number = 1;
   pageSize: number = 10;
   selectedIndex: number = -1;
   post?:IPost;
   constructor(
-    private userService: UserService,
     private postService: PostService,
     private commentService: CommentService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
     ) {}
 
   ngOnInit() {
     this.loadUsers();
-
   }
   loadUsers() {
     this.postService.getPostByPaginator(this.currentPage, this.pageSize).subscribe((result) => {
-      const getPostDetailsObservables = result.map((post) => {
+      this.totalPage=Math.ceil(result.length / this.pageSize);
+      const getPostDetailsObservables = result.data.map((post) => {
         const { category_id, content, creation_date, is_published, post_id,title,user_id,view_count } = post;
         const comment$ = this.commentService.getCommentById(post_id, 'post') ?? of([]);;
 
@@ -63,8 +63,16 @@ export class AdminPostsComponent {
       });
     });
   }
-  toggleDetails() {
+  toggleDetails(postId:number) {
     this.isDetailsVisible = !this.isDetailsVisible;
+    this.router.navigate(['/admin/post/detail', postId]);
+  }
+  deleteUser(post: IPost) {
+    this.postService.deletePost(post.post_id)
+  }
+  handleClick(index: number, post: IPost) {
+    this.isSelected(index, post);
+    this.toggleDetails(post.post_id);
   }
   isSelected(index: number,post:IPost) {
     if (this.selectedIndex === index) {

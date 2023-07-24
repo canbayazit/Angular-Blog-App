@@ -37,29 +37,6 @@
         max-width: 120px;
       }
     }
-    .tooltip-button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-      position: relative;
-      transition: transform 0.3s;
-      &.edit {
-        &:hover {
-          color: #ff7b00;
-        }
-      }
-
-      &.delete {
-        &:hover {
-          color: #dc3545;
-        }
-      }
-    }
-
-    .tooltip-button:hover {
-      transform: scale(1.2);
-    }
 
     .col{
       span{
@@ -70,4 +47,5 @@
       }
     }
   }
+
 }
