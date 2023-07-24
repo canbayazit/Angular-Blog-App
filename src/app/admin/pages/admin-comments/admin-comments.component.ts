@@ -7,71 +7,99 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { AdminEditCommentDialogComponent } from '../../components/admin-edit-comment-dialog/admin-edit-comment-dialog.component';
 import { combineLatest, map, of } from 'rxjs';
 import IPost from 'src/app/model/post/post';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-comments',
   templateUrl: './admin-comments.component.html',
-  styleUrls: ['./admin-comments.component.scss']
+  styleUrls: ['./admin-comments.component.scss'],
 })
-export class AdminCommentsComponent implements OnInit{
-  isDetailsVisible:boolean = true;
+export class AdminCommentsComponent implements OnInit {
+  isDetailsVisible: boolean = true;
   currentPage: number = 1;
   pageSize: number = 10;
   selectedIndex: number = -1;
   commentList: IComment[] = [];
-  post?:IPost;
-  userId?:number;
-  
+  post?: IPost;
+  userId?: number;
+  totalPage:number=1;
+
   constructor(
     private userService: UserService,
     private postService: PostService,
     private commentService: CommentService,
-    private dialog: MatDialog
-    ) {}
-
-
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadUsers();
   }
-  isSelected(index: number,comment:IComment) {
+  isSelected(index: number, comment: IComment) {
     if (this.selectedIndex === index) {
       this.selectedIndex = -1;
     } else {
       this.selectedIndex = index;
-      this.post=comment.post;
-      this.userId=comment.user_id;
+      this.post = comment.post;
+      this.userId = comment.user_id;
     }
   }
-  toggleDetails() {
+  toggleDetails(comment: IComment) {
     this.isDetailsVisible = !this.isDetailsVisible;
+    const navigationExtras = {
+      queryParams: { userId: comment.user_id, postId: comment.post_id }
+    };
+    if (!this.isDetailsVisible) {
+      this.router.navigate(['/admin/comment/detail'], navigationExtras);
+
+    }
   }
-
+  deleteUser(comment: IComment) {
+    this.commentService.deleteComment(comment.comment_id)
+  }
   loadUsers() {
-    this.commentService.getCommentByPaginator(this.currentPage, this.pageSize).subscribe((result) => {
-      const getCommentDetailsObservables = result.map((commentData) => {
-        const { comment, comment_id, creation_date, is_confirmed, post_id,user_id } = commentData;
-        // user_id'e ait post'ları ve comment'ları çek yoksa boş observable dön
-        const post$ = this.postService.getPostById(post_id, 'post') ?? of([]);
-        const user$ = this.userService.getUserById(user_id) ?? of([]);
-        // observable nesnelerini birleştir tek bir observable nesnesi haline getirir,
-        // observable'ın en son value'su neyse onu alır
-        return combineLatest([post$, user$]).pipe(
-          map(([posts, users]) => {
-            const post = posts[0];
-            const username = users[0]['username'];
+    this.commentService
+      .getCommentByPaginator(this.currentPage, this.pageSize).subscribe((result) => {
+        this.totalPage=Math.ceil(result.length / this.pageSize);
+        const getCommentDetailsObservables = result.data.map((commentData) => {
+          const {
+            comment,
+            comment_id,
+            creation_date,
+            is_confirmed,
+            post_id,
+            user_id,
+          } = commentData;
+          // user_id'e ait post'ları ve comment'ları çek yoksa boş observable dön
+          const post$ = this.postService.getPostById(post_id, 'post') ?? of([]);
+          const user$ = this.userService.getUserById(user_id) ?? of([]);
+          // observable nesnelerini birleştir tek bir observable nesnesi haline getirir,
+          // observable'ın en son value'su neyse onu alır
+          return combineLatest([post$, user$]).pipe(
+            map(([posts, users]) => {
+              const post = posts[0];
+              const username = users[0]['username'];
 
-            return {
-              comment, comment_id, creation_date, is_confirmed, post_id,user_id,username,post
-            } as IComment;
-          })
+              return {
+                comment,
+                comment_id,
+                creation_date,
+                is_confirmed,
+                post_id,
+                user_id,
+                username,
+                post,
+              } as IComment;
+            })
+          );
+        });
+
+        combineLatest(getCommentDetailsObservables).subscribe(
+          (commentsWithDetails) => {
+            this.commentList = commentsWithDetails;
+          }
         );
       });
-
-      combineLatest(getCommentDetailsObservables).subscribe((commentsWithDetails) => {
-        this.commentList = commentsWithDetails;
-      });
-    });
   }
   previousPage() {
     if (this.currentPage > 1) {
@@ -87,10 +115,10 @@ export class AdminCommentsComponent implements OnInit{
     }
   }
 
-  openEditModal(comment:IComment): void {
+  openEditModal(comment: IComment): void {
     const dialogRef = this.dialog.open(AdminEditCommentDialogComponent, {
-      width:'60%',
-      data: comment,  // send data to dialog component
+      width: '60%',
+      data: comment, // send data to dialog component
     });
 
     dialogRef.afterClosed().subscribe((updatedComment) => {

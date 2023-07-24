@@ -6,22 +6,9 @@
 }
     &_col{
       height: 100%;
-      // border: 1px solid red;
-      // &.active{
-      //   background-color: #efefef;
-      // }
-      // &:hover{
-      //   background-color: #efefef;
-      //   // border: 1px solid red;
-      //   &>.container_info_user{
-      //     h4{
-      //       color: #2A85FF;
-      //     }
-      //     i{
-      //       color: #2A85FF;
-      //     }
-      //   }
-      // }
+      &.active{
+        background-color: #efefef;
+      }
     }
     &_user{
       cursor: pointer;
