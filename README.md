@@ -1,6 +1,6 @@
 # Allianz Blog Application Assignment
 #### Kullanılan Teknolojiler ve Özellikler
-- Firebase ile HTPP Request
+- Firebase ile HTTP Request
 - RJXS operatörlerinin kullanımı
 - Pagination (Sayfalama)
 - GET PUT POST DELETE işlemlerini yapan service'ler
